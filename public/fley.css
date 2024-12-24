@@ -1,0 +1,62 @@
+.gallery {
+    padding: 20px;
+}
+
+/* Grid Container for images */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 images per row */
+    gap: 20px; /* Space between images */
+}
+
+/* Individual Image */
+.gallery-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px; /* Fixed height */
+    overflow: hidden; /* Prevent images from spilling over */
+    border: 1px solid gray;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px gray;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for scale and shadow */
+}
+
+/* Fixed size for images */
+.gallery-img {
+    width: 100%; /* Take up the full width of the container */
+    height: auto;
+    object-fit: contain; /* Ensure the image scales correctly and does not stretch */
+    cursor: pointer;
+    transition: transform 0.3s ease; /* Smooth transition for scaling effect */
+}
+
+/* Hover effect for images */
+.gallery-item:hover {
+    transform: scale(1.05); /* Slightly zoom the image */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2); /* Add a larger shadow */
+}
+
+/* Hover effect for the image */
+.gallery-img:hover {
+    transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+/* For responsiveness: adjust for smaller screens */
+@media (max-width: 1200px) {
+    .grid-container {
+        grid-template-columns: repeat(3, 1fr); /* 3 images per row on medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 images per row on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .grid-container {
+        grid-template-columns: 1fr; /* 1 image per row on mobile screens */
+    }
+}
