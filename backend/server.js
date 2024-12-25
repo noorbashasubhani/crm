@@ -1585,6 +1585,85 @@ app.get('/pendingApprovals', (req, res) => {
     }
   });
 });
+
+app.get('/getbusinessDetails', (req, res) => {
+  
+  const sql = "SELECT * FROM states order by state ASC";
+  // Correct method name is query, not qeury
+  db.query(sql, (err, result) => {
+    if (err) {
+      res.status(500).json({
+        message: 'Data not fetched',
+        error: err
+      });
+    } else {
+      res.status(200).json({
+        message: 'Success',
+        data: result
+      });
+    }
+  });
+});
+
+
+app.get('/getSuperPartnersList', (req, res) => {
+  
+  const sql = "SELECT u.firstname AS user_name, GROUP_CONCAT(s.firstname, ' ' ,  s.lastname) AS sub_users, COUNT(s.super_partner_id) AS no_of_sub_users FROM user u LEFT JOIN user s ON u.user_id = s.super_partner_id WHERE s.status='Y' AND u.partner_type = 'S' GROUP BY u.user_id;";
+  // Correct method name is query, not qeury
+  db.query(sql, (err, result) => {
+    if (err) {
+      res.status(500).json({
+        message: 'Data not fetched',
+        error: err
+      });
+    } else {
+      res.status(200).json({
+        message: 'Success',
+        data: result
+      });
+    }
+  });
+});
+
+
+app.get('/getSalesPartnersList', (req, res) => {
+  
+  const sql = "SELECT u.firstname AS user_name, GROUP_CONCAT(s.firstname, ' ' ,  s.lastname) AS sub_users, COUNT(s.sales_partner_id) AS no_of_sub_users FROM user u LEFT JOIN user s ON u.user_id = s.sales_partner_id WHERE s.status='Y' AND u.partner_type = 'P' GROUP BY u.user_id;";
+   // Correct method name is query, not qeury
+  db.query(sql, (err, result) => {
+    if (err) {
+      res.status(500).json({
+        message: 'Data not fetched',
+        error: err
+      });
+    } else {
+      res.status(200).json({
+        message: 'Success',
+        data: result
+      });
+    }
+  });
+});
+
+app.get('/getLeadPartnersList', (req, res) => {
+  
+  const sql = "SELECT * from user WHERE status='Y' AND partner_type = 'L'";
+  // Correct method name is query, not qeury
+  db.query(sql, (err, result) => {
+    if (err) {
+      res.status(500).json({
+        message: 'Data not fetched',
+        error: err
+      });
+    } else {
+      res.status(200).json({
+        message: 'Success',
+        data: result
+      });
+    }
+  });
+});
+
 // Start the server
 app.listen(5000, () => {
   console.log('Server is running on port 5000');

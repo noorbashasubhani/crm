@@ -57,6 +57,8 @@ import VochersLanding from './Pages/VochersLanding.jsx';
 import GiftList from './Pages/GiftList.jsx';
 import QualityCheck from './Pages/QualityCheck.jsx';
 import PartnerApproval from './Pages/PartnerApproval.jsx';
+import BusinessLocations from './Pages/BusinessLocations.jsx';
+import PartnersDetails from './Pages/PartnersDetails.jsx';
 
 
 function App() {
@@ -135,6 +137,8 @@ function App() {
           <Route path="/giftlist" element={<ProtectedRoute element={<GiftList />} />} />
           <Route path="/quality-check" element={<ProtectedRoute element={<QualityCheck />} />} />
           <Route path="/approvals" element={<ProtectedRoute element={<PartnerApproval />} />} />
+          <Route path="/business-locations" element={<ProtectedRoute element={<BusinessLocations />} />} />
+          <Route path="/Partnersdetails" element={<ProtectedRoute element={<PartnersDetails />} />} />
           
         </Routes>
       </Router>

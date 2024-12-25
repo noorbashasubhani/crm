@@ -5,6 +5,7 @@ import axios from 'axios'
 import { useState } from 'react'
 
 
+
 const Sidebar = () => {
 
   const [user, setUser] = useState(null); // State to hold user details
@@ -309,11 +310,16 @@ if (!user) {
           aria-expanded="false"
           aria-controls="charts"
         >
-          <span className="menu-title">Masters</span>
+          <span className="menu-title">Master</span>
           <i className="mdi mdi-chart-bar menu-icon" />
         </a>
         <div className="collapse" id="charts">
           <ul className="nav flex-column sub-menu">
+          <li className="nav-item">
+            <Link className="nav-link" to="/Partnersdetails">
+            Parners Details
+              </Link>
+            </li>
             <li className="nav-item">
             <Link className="nav-link" to="/deprtments_and_desinations">
             Department & Designations
@@ -327,6 +333,11 @@ if (!user) {
             <li className="nav-item">
             <Link className="nav-link" to="/destinations">
             Destinations List
+              </Link>
+            </li>
+            <li className="nav-item">
+            <Link className="nav-link" to="/business-locations">
+            Business Location List
               </Link>
             </li>
 

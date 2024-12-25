@@ -28,6 +28,20 @@
   color: #61dafb;
 }
 
+table thead tr th{
+background-color: rgb(7, 73, 7) !important;
+color:white !important;
+text-align: left;
+  text-wrap:break;
+}
+
+tbody tr td{
+  text-align: left;
+  text-wrap:break;
+  background-color: rgb(255, 255, 255) !important;
+  color:rgb(13, 19, 11) !important;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
