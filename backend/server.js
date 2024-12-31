@@ -66,7 +66,7 @@ app.post('/send-email', (req, res) => {
 
 // MySQL connection
 const db = mysql.createConnection({
-  host: process.env.DB_HOST.render.com,      // Use the Render DB host
+  host: process.env.DB_HOST,      // Use the Render DB host
   user: process.env.DB_USER,      // Your DB username
   password: process.env.DB_PASSWORD, // Your DB password
   database: process.env.DB_NAME,  // The database name you're connecting to
