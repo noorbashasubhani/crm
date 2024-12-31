@@ -41,7 +41,24 @@ tbody tr td{
   background-color: rgb(255, 255, 255) !important;
   color:rgb(13, 19, 11) !important;
 }
-
+.col-sm-3,.col-sm-12,.form-label,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-10,.col-sm-11,.col-sm-12{
+  text-align: left;
+  font-size: 14px;
+  font-weight: 500;
+  color:rgb(71, 69, 69);
+}
+.form-select,.form-control{
+  font-size:14px !important;
+  text-align: left !important;
+  color:gray !important;
+}
+.form-wrap{
+  box-shadow: #101213;
+  background-color:white;
+  padding:50px 50px;
+  border:px solid rgb(235, 223, 223);
+  border-radius: 10px;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

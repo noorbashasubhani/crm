@@ -21,6 +21,10 @@ app.use('/uploadsfly', express.static(path.join(__dirname, 'uploadsfly')));
 app.use('/uploadslib', express.static(path.join(__dirname, 'uploadslib')));
 
 
+
+console.log(process.env.DB_HOST);  // Should print 'localhost'
+console.log(process.env.DB_USER);
+
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',  // Explicitly set Gmail SMTP server
   port: 587,               // TLS port (587) or SSL (465)
@@ -66,10 +70,10 @@ app.post('/send-email', (req, res) => {
 
 // MySQL connection
 const db = mysql.createConnection({
-  host: process.env.DB_HOST || 'localhost',  // Default to localhost if not set
-  user: process.env.DB_USER || 'root',      // Default to 'root' if not set
-  password: process.env.DB_PASSWORD || '',  // Default to empty string if not set
-  database: process.env.DB_NAME || 'localcrm' // Default to 'localcrm' if not set
+  host: 'localhost',  // Replace with your MySQL host
+  user: 'root',       // Replace with your MySQL username
+  password: '',       // Replace with your MySQL password
+  database: 'localcrm'  // Replace with your database name
 });
 
 

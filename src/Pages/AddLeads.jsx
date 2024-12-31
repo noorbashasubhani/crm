@@ -68,28 +68,29 @@ const Accounts = () => {
             <Menu />
             <Sidebar />
 
-            <div className="main-panel mt-0">
+            <div className="main-panel my-5 shadow shadow-info">
                 <div className="content-wrapper">
                     <div className="page-header">
-                        <h3 className="page-title"> Accounts </h3>
+                        <h3 className="page-title"> Create Leads  </h3>
                         <nav aria-label="breadcrumb">
                             <ol className="breadcrumb">
                                 <li className="breadcrumb-item">
-                                    <a href="#">Accounts</a>
+                                    <a href="#">Leads</a>
                                 </li>
                                 <li className="breadcrumb-item active" aria-current="page">
-                                    Ledger
+                                    Details
                                 </li>
                             </ol>
                         </nav>
                     </div>
                     <div className="container my-5">
+                    <form action="#" method="POST" className="form-wrap mt-0" onSubmit={alldata}>
                     <div className="row">
                     
-  <h2 className="text-center mb-4">Lead Details Form</h2>
-  <form action="#" method="POST" onSubmit={alldata}>
+ 
+ 
     {/* Lead Source */}
-    <div className="mb-3">
+    <div className="col-sm-3 mb-3">
       <label htmlFor="leadSource" className="form-label">
         Lead Source
       </label>
@@ -105,7 +106,7 @@ const Accounts = () => {
     {/* Lead Location */}
     
 
-    <div className="mb-3">
+    <div className="col-sm-3 mb-3">
       <label htmlFor="leadSource" className="form-label">
       Lead Locations
       </label>
@@ -114,12 +115,40 @@ const Accounts = () => {
         {city.map((itemss,index)=>(
         <option value={itemss.id}>{itemss.state}</option>
          ))}
-
-         
       </select>
     </div>
+
+
+    <div className="col-sm-3 mb-3">
+      <label htmlFor="leadSource" className="form-label">
+      Raised By
+      </label>
+      <select className="form-select" id="leadSource" name="location_name" onChange={changestatr}>
+        <option value="">Select Lead Location</option>
+        {city.map((itemss,index)=>(
+        <option value={itemss.id}>{itemss.state}</option>
+         ))}
+      </select>
+    </div>
+
+
+    <div className="col-sm-3 mb-3">
+      <label htmlFor="leadSource" className="form-label">
+      Raised Contact Number
+      </label>
+      <select className="form-select" id="leadSource" name="location_name" onChange={changestatr}>
+        <option value="">Select Lead Location</option>
+        {city.map((itemss,index)=>(
+        <option value={itemss.id}>{itemss.state}</option>
+         ))}
+      </select>
+    </div>
+
+
+
+
     {show && (
-    <div className="mb-3">
+    <div className="col-sm-3 mb-3">
       <label htmlFor="leadSource" className="form-label">
       Partner Names 
       </label>
@@ -132,8 +161,11 @@ const Accounts = () => {
     </div>
     )}
 
+</div>
+<div className="row">
+
     {/* Holiday Type */}
-    <div className="mb-3">
+    <div className="col-sm-3 mb-3">
       <label htmlFor="holidayType" className="form-label">
         Holiday Type
       </label>
@@ -143,8 +175,11 @@ const Accounts = () => {
         <option value="I">International</option>
       </select>
     </div>
+
+
+
     {/* Customer Name */}
-    <div className="mb-3">
+    <div className="col-sm-3 mb-3">
       <label htmlFor="customerName" className="form-label" >
         Customer Name
       </label>
@@ -158,8 +193,11 @@ const Accounts = () => {
         onChange={changestatr}
       />
     </div>
+
+
+
     {/* Customer Mobile Number */}
-    <div className="mb-3">
+    <div className="col-sm-3 mb-3">
       <label htmlFor="customerMobile" className="form-label">
         Customer Mobile Number
       </label>
@@ -174,8 +212,11 @@ const Accounts = () => {
         onChange={changestatr}
       />
     </div>
+
+
+
     {/* Customer E-Mail */}
-    <div className="mb-3">
+    <div className="col-sm-3 mb-3">
       <label htmlFor="customerEmail" className="form-label">
         Customer E-Mail
       </label>
@@ -189,8 +230,10 @@ const Accounts = () => {
         onChange={changestatr}
       />
     </div>
+
+
     {/* Holiday Description */}
-    <div className="mb-3">
+    <div className="col-sm-12 mb-3">
       <label htmlFor="holidayDescription" className="form-label">
         Holiday Description
       </label>
@@ -205,14 +248,15 @@ const Accounts = () => {
         onChange={changestatr}
       />
     </div>
+
     {/* Submit Button */}
     <div className="mb-3 text-center">
       <button type="submit" className="btn btn-primary">
         Submit
       </button>
     </div>
-  </form>
-</div>
+    </div> </form>
+
 
                     </div>
                 </div>

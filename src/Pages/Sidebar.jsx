@@ -427,23 +427,14 @@ if (!user) {
               </Link>
             </li>
 
-         
-          
-            
-
           </ul>
         </div>
       </li>
     
       
       <li className="nav-item">
-      <Link className="nav-link" to="/partners"
-          className="nav-link"
-         
-          
-        >
+      <Link className="nav-link" to="/partners">
           <span className="menu-title">
-            
            Partners
              </span>
           <i className="mdi mdi-file-document-box menu-icon" ></i>
