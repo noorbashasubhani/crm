@@ -8,7 +8,7 @@ const multer = require('multer');
 const path = require('path');
 const { stringify } = require('querystring');
 const nodemailer = require('nodemailer');
-
+const port = 5000; 
 
 // Initialize express app
 const app = express();
@@ -19,7 +19,6 @@ app.use(bodyParser.json()); // To parse JSON requests
 
 app.use('/uploadsfly', express.static(path.join(__dirname, 'uploadsfly')));
 app.use('/uploadslib', express.static(path.join(__dirname, 'uploadslib')));
-
 
 
 const transporter = nodemailer.createTransport({
@@ -34,6 +33,8 @@ const transporter = nodemailer.createTransport({
     rejectUnauthorized: false,  // Ignore SSL certificate issues (useful in some environments)
   },
 });
+
+
 
 
 
@@ -65,21 +66,20 @@ app.post('/send-email', (req, res) => {
 
 // MySQL connection
 const db = mysql.createConnection({
-  host: 'localhost',  // Replace with your MySQL host
-  user: 'root',       // Replace with your MySQL username
-  password: '',       // Replace with your MySQL password
-  database: 'localcrm'  // Replace with your database name
+  host: process.env.DB_HOST || 'localhost',  // Default to localhost if not set
+  user: process.env.DB_USER || 'root',      // Default to 'root' if not set
+  password: process.env.DB_PASSWORD || '',  // Default to empty string if not set
+  database: process.env.DB_NAME || 'localcrm' // Default to 'localcrm' if not set
 });
+
+
 
 // Connect to MySQL
-db.connect((err) => {
-  if (err) {
-    console.error('Error connecting to the database: ', err);
-    return;
-  }
-  console.log('Connected to MySQL');
-});
 
+app.get('/', (req, res) => {
+  console.log('Hi how r u boy......');  // This will print to the terminal
+  res.send('Hello, world!');  // Response to the client
+});
 
 
 // Set up Multer for file uploads
@@ -1585,6 +1585,85 @@ app.get('/pendingApprovals', (req, res) => {
     }
   });
 });
+
+app.get('/getbusinessDetails', (req, res) => {
+  
+  const sql = "SELECT * FROM states order by state ASC";
+  // Correct method name is query, not qeury
+  db.query(sql, (err, result) => {
+    if (err) {
+      res.status(500).json({
+        message: 'Data not fetched',
+        error: err
+      });
+    } else {
+      res.status(200).json({
+        message: 'Success',
+        data: result
+      });
+    }
+  });
+});
+
+
+app.get('/getSuperPartnersList', (req, res) => {
+  
+  const sql = "SELECT u.firstname AS user_name, GROUP_CONCAT(s.firstname, ' ' ,  s.lastname) AS sub_users, COUNT(s.super_partner_id) AS no_of_sub_users FROM user u LEFT JOIN user s ON u.user_id = s.super_partner_id WHERE s.status='Y' AND u.partner_type = 'S' GROUP BY u.user_id;";
+  // Correct method name is query, not qeury
+  db.query(sql, (err, result) => {
+    if (err) {
+      res.status(500).json({
+        message: 'Data not fetched',
+        error: err
+      });
+    } else {
+      res.status(200).json({
+        message: 'Success',
+        data: result
+      });
+    }
+  });
+});
+
+
+app.get('/getSalesPartnersList', (req, res) => {
+  
+  const sql = "SELECT u.firstname AS user_name, GROUP_CONCAT(s.firstname, ' ' ,  s.lastname) AS sub_users, COUNT(s.sales_partner_id) AS no_of_sub_users FROM user u LEFT JOIN user s ON u.user_id = s.sales_partner_id WHERE s.status='Y' AND u.partner_type = 'P' GROUP BY u.user_id;";
+   // Correct method name is query, not qeury
+  db.query(sql, (err, result) => {
+    if (err) {
+      res.status(500).json({
+        message: 'Data not fetched',
+        error: err
+      });
+    } else {
+      res.status(200).json({
+        message: 'Success',
+        data: result
+      });
+    }
+  });
+});
+
+app.get('/getLeadPartnersList', (req, res) => {
+  
+  const sql = "SELECT * from user WHERE status='Y' AND partner_type = 'L'";
+  // Correct method name is query, not qeury
+  db.query(sql, (err, result) => {
+    if (err) {
+      res.status(500).json({
+        message: 'Data not fetched',
+        error: err
+      });
+    } else {
+      res.status(200).json({
+        message: 'Success',
+        data: result
+      });
+    }
+  });
+});
+
 // Start the server
 app.listen(5000, () => {
   console.log('Server is running on port 5000');
