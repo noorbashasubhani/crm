@@ -66,10 +66,11 @@ app.post('/send-email', (req, res) => {
 
 // MySQL connection
 const db = mysql.createConnection({
-  host: process.env.DB_HOST || 'localhost',  // Default to localhost if not set
-  user: process.env.DB_USER || 'root',      // Default to 'root' if not set
-  password: process.env.DB_PASSWORD || '',  // Default to empty string if not set
-  database: process.env.DB_NAME || 'localcrm' // Default to 'localcrm' if not set
+  host: process.env.DB_HOST,      // Use the Render DB host
+  user: process.env.DB_USER,      // Your DB username
+  password: process.env.DB_PASSWORD, // Your DB password
+  database: process.env.DB_NAME,  // The database name you're connecting to
+  port: process.env.DB_PORT || 3306 
 });
 
 
